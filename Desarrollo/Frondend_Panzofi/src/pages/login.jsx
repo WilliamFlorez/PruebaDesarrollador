@@ -1,15 +1,49 @@
 import { useForm } from "react-hook-form"
+import { useEffect, useState } from "react"
+import {useNavigate} from 'react-router-dom'
+import { getAllUsers , findUserByCredentials} from "../api/panzofi.api"; "../api/panzofi.api"
+
 import { login } from "../api/task.api";
 
 
 export function Login(){
 
     const {register, handleSubmit, formState:{errors}} = useForm();
+    const navigate = useNavigate();
 
-    const onSubmit = handleSubmit( async data => {
-        {/*const res = await  login(data);*/}
-        console.log(data);
-    })
+                
+    const [tasks, setTasks] = useState([]);
+
+    useEffect(() =>{
+                    async function loadTasks(){
+                        const res = await getAllUsers();
+                    {/* console.log(res.data);*/}
+                    setTasks(res.data);
+                    }
+                    loadTasks();
+            }, []);
+
+
+
+            const onSubmit = handleSubmit(async (data) => {
+                try {
+                    // Buscar el usuario con las credenciales proporcionadas
+                    const user = tasks.find(
+                        (task) => task.nombre === data.nombre && task.password === data.password
+                    );
+            
+                    if (user) {
+                        // Si el usuario es encontrado, redirigir
+                        navigate(`/User/${user.id}`);
+                    } else {
+                        // Si no hay coincidencias, mostrar un error
+                        alert("Nombre de usuario o contraseña incorrectos");
+                    }
+                } catch (error) {
+                    console.error("Error al iniciar sesión:", error);
+                }
+            });
+
 
     return(
                     <>
@@ -32,7 +66,7 @@ export function Login(){
                             
                             {errors.contraseña && <span>this field is required</span> }
                             </div>
-                        <button>save</button>
+                        <button>iniciar sesión</button>
                     </div>
             </form>
                     </>

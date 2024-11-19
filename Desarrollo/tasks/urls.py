@@ -10,5 +10,6 @@ router.register(r'user', views.UserView, 'users')
 
 urlpatterns = [
     path("api/v1/", include(router.urls) ),
-    path("panzofi/v1/", include(router.urls))
+    path("panzofi/v1/", include(router.urls)),
+    
   ]

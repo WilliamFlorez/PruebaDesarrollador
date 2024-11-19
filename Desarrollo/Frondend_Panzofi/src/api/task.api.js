@@ -3,13 +3,14 @@ import axios from 'axios';
 
 {/*Base de URL para peticiones */}
 const tasksAPI = axios.create({
-    baseURL: 'http://localhost:8000/tasks/api/v1/',
+   /* baseURL: 'http://localhost:8000/tasks/api/v1/',*/
+      baseURL: 'http://localhost:8000/PruebaTec/panzofi/v1/',
 });
 
 
 export const getAllTasks = () => {
    {/**return axios.get('http://localhost:8000/tasks/api/v1/tasks/') */} 
-    return tasksAPI.get('tasks/')
+    return tasksAPI.get('user/')
 };
 
 export const createTasks = (task) => {

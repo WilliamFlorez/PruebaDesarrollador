@@ -12,6 +12,8 @@ class Task(models.Model):
 # Modelo para los usuarios
 class Usuario(models.Model):
     nombre = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    is_admin = models.BooleanField(default=False)
     date = models.TextField(blank=True)
     tiempo = models.TextField(blank=True)
     contador1 = models.IntegerField(default=0)
