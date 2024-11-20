@@ -1,8 +1,7 @@
-import {useForm} from 'react-hook-form'
-import {updateUser, getAllUsers} from '../api/panzofi.api'
+import {updateUser, getAllUsers, getUnicUser} from '../api/panzofi.api'; "../api/panzofi.api"
 import {useParams} from 'react-router-dom'
-import {useEffect, useState } from 'react'
-;
+import {useEffect, useState } from 'react';
+import { Cronometro} from '../components/Cronometro';
 
 export function Usuario(){
 
@@ -11,24 +10,17 @@ export function Usuario(){
         const {id} = useParams();
 
 
+      console.log("USER ID"+ id);
 
-        const [tasks, setTasks] = useState([]);
+
         useEffect(() =>{
                  async function loadTasks(){
-                     const res = await getAllUsers();
-                    {/* console.log(res.data);*/}
-                    setTasks(res.data);
-
-
-                    
+                     const res = await getUnicUser(id);
+                    setcounter1(res.data.contador1+1);
+                    setcounter2(res.data.contador2+1);
                  }
                  loadTasks();
         }, []);
-
-
-
-
-
 
 
 
@@ -36,30 +28,23 @@ export function Usuario(){
         setcounter1(counter1 + 1);
         console.log('count1 ',counter1);
             updateUser(id, { contador1: counter1 } )
-        };
-
-    
+        }; 
       const ContButtom2 = () =>{
             setcounter2(counter2 + 1);
             console.log('count2 ', counter2);
             updateUser(id, { contador2: counter2 } )
       }
 
-        const {register, handleSubmit} = useForm();
-
-
-
-        const onSubmit = handleSubmit( async data => {
-            const res = await  createUser(data);
-            console.log(res);
-        })
+     
 
         
 
 
     return(
         <>
+      
             <div>
+                <Cronometro id={id} />
               <h1>Panzofi </h1>
               <h1>Prueba de ingreso equipo desarrollador</h1>
             <p>Descripción: </p>
@@ -72,8 +57,6 @@ export function Usuario(){
             <p>  almacenando un registro de cuando los usuarios ingresan a la aplicación y presionan los botones.                           </p>
            
             </div>
-
-
           <div >
                 <button onClick={ContButtom1}>count1</button>
                 <button onClick={ContButtom2}>count2</button>

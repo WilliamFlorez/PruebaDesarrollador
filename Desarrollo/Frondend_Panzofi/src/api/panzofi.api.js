@@ -10,20 +10,11 @@ const PanzofiAPI = axios.create({
 export const getAllUsers = () => {
      return PanzofiAPI.get('user/')
  };
- export const getUnicUser = (id) => {     PanzofiAPI.get( `/user/${id}/`) };
+ export const getUnicUser = (id) => {   return  PanzofiAPI.get( `user/${id}/`) };
         
 /*export const findUser = (id) => { PanzofiAPI.post('user/',id) };*/
-export const findUserName = (name) => { PanzofiAPI.get('user/',name) };
+export const findUserName = (name) => { return PanzofiAPI.get(`user/${name}/`) };
 
 
 export const updateUser = (id, info) => { PanzofiAPI.patch(`user/${id}/`,info) };
 
-export const findUserByCredentials = (username, password) => {
-    return PanzofiAPI.post('user/login/', { username, password });
-};
-
-/*   Login de usuarios
-export const login = (params) => {*/
-    {/* return axios.post('http://localhost:8000/tasks/api/v1/tasks/') */} 
-  /*   return PanzofiAPI.post('Usuarios/',params)
- };*/

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { useEffect, useState } from "react"
 import {useNavigate} from 'react-router-dom'
-import { getAllUsers , findUserByCredentials} from "../api/panzofi.api"; "../api/panzofi.api"
+import { getAllUsers } from "../api/panzofi.api"; "../api/panzofi.api"
 
 import { login } from "../api/task.api";
 
@@ -31,10 +31,15 @@ export function Login(){
                     const user = tasks.find(
                         (task) => task.nombre === data.nombre && task.password === data.password
                     );
+                    console.log(user)
             
                     if (user) {
                         // Si el usuario es encontrado, redirigir
-                        navigate(`/User/${user.id}`);
+                        if (!user.is_admin) {
+                          navigate(`/User/${user.id}`);  
+                        }else{
+                            navigate(`/Admin/`);
+                        }
                     } else {
                         // Si no hay coincidencias, mostrar un error
                         alert("Nombre de usuario o contraseña incorrectos");
