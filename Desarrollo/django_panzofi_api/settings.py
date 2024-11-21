@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders', # para comunicarse con el backend
     'rest_framework', # creación de API
-    'tasks'
+    'tasks'     # Carpeta con los archivos frondend y logicas
 ]
 
 MIDDLEWARE = [
@@ -127,4 +127,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS authorization
+# URL del servidor REACT
 CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]

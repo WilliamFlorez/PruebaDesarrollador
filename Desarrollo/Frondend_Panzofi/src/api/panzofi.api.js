@@ -10,11 +10,14 @@ const PanzofiAPI = axios.create({
 export const getAllUsers = () => {
      return PanzofiAPI.get('user/')
  };
- export const getUnicUser = (id) => {   return  PanzofiAPI.get( `user/${id}/`) };
+ export const getUnicUser = (id) => {
+       return  PanzofiAPI.get( `user/${id}/`) };
         
 /*export const findUser = (id) => { PanzofiAPI.post('user/',id) };*/
-export const findUserName = (name) => { return PanzofiAPI.get(`user/${name}/`) };
+export const findUserName = (name) => {
+     return PanzofiAPI.get(`user/${name}/`) };
 
 
-export const updateUser = (id, info) => { PanzofiAPI.patch(`user/${id}/`,info) };
+export const updateUser = (id, info) => {
+     PanzofiAPI.patch(`user/${id}/`,info) };
 

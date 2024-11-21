@@ -10,8 +10,6 @@ export function Usuario(){
         const {id} = useParams();
 
 
-      console.log("USER ID"+ id);
-
 
         useEffect(() =>{
                  async function loadTasks(){
